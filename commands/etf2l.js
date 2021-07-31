@@ -1,5 +1,5 @@
 const Discord = require("discord.js"); //main discord js api
-const tokens = require('./tokens.json');
+const tokens = require('../tokens.json');
 
 const SteamAPI = require('steamapi');
 const steam = new SteamAPI(tokens.steam);
@@ -189,4 +189,39 @@ module.exports = {
     	},
 };
 
-		
+function gameModeParse (gameMode, player) {
+	let latestSeasonID = null;
+	let checkedSeason = null;
+
+	let team = etf2lPlayer.player.teams[HLTeamNo];
+	let listofHLTeamSeasons = etf2lPlayer.player.teams[HLTeamNo].competitions;
+	let amountofHLTeamSeasons = Object.keys(etf2lPlayer.player.teams[HLTeamNo].competitions).length;
+	let latestSeason = null; //meaning the JSON part of the season we are about to get info about
+
+	HLTeamLink = "https://etf2l.org/teams/" + team.id;
+	HLTeamName = team.name;
+
+	for (let i = 0; i < amountofHLTeamSeasons; i++) {
+		checkedSeason = Object.keys(listofHLTeamSeasons)[amountofHLTeamSeasons - i - 1];
+		if ((!listofHLTeamSeasons[checkedSeason].competition.includes("Qualifiers")) && 
+			(!listofHLTeamSeasons[checkedSeason].competition.includes("Playoffs"))) {
+			latestSeasonID = checkedSeason;
+			latestSeason = etf2lPlayer.player.teams[HLTeamNo].competitions[latestSeasonID];
+			break; //found the latest HL season that is not qualifiers of playoffs, since those don't have the division argument
+		}
+	}
+
+	if (latestSeasonID == null) {
+		HLTeamCompetititonName = null;
+		HLTeamDiv = null;
+	} else { //TODO: add check for the player match history rather than division of the current team
+		if ((latestSeason.division.name == null)) { //for those HL seasons, where open division was basically a complete different season
+			let colonIndex = latestSeason.competition.indexOf(':'); //we need this to find colon in string like "Highlander Season 18: Open" and the slice the ": Open" part off
+			HLTeamCompetititonName = latestSeason.competition.slice(0, colonIndex); //"Highlander Season 18: Open" -> "Highlander Season 18"
+			HLTeamDiv = "Open";
+		} else { //now for the usual seasons
+			HLTeamDiv = latestSeason.division.name;
+			HLTeamCompetititonName = latestSeason.competition;
+		}
+	}
+}

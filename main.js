@@ -1,9 +1,11 @@
+const process = require('process');
 const Discord = require("discord.js");
+const discordIDs = require("./discordIDs.json");
 
 const config = require('./config.json');
 const tokens = require('./tokens.json');
 
-const client = new Discord.Client();
+const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 client.commands = new Discord.Collection();
 
 const fs = require('fs');
@@ -16,15 +18,8 @@ for (const file of commandFiles) {
 
 client.login(tokens.discord);
 
-const notificationsRoleID = '511657769233809408'; //'derzhite' role id on v1km4n server
-const serverID = '347755453528276992'; //v1km4n server id
-
-var connection = null;
-var dispatcher = null; 
-var queue = [];
-
 client.once('ready', () => {
-client.user.setStatus('available')
+    client.user.setStatus('available');
     client.user.setPresence({
         activity: {
             name: '!helpv',
@@ -62,5 +57,5 @@ client.on('message', async message => {
 });
 
 client.once("ready", ()=>{
-	client.channels.cache.get("511298295985864714").send("I'm online!");
+	client.channels.cache.get(discordIDs.channel.log).send(`Started up on ${process.platform}`);
 });
