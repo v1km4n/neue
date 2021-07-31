@@ -1,35 +1,28 @@
 {
-  "name": "neue",
+  "name": "neuerefreshed",
   "version": "0.0.1",
+  "description": "Neue re-written in order to remove modules that are not needed",
   "main": "main.js",
-  "dependencies": {
-    "@discordjs/opus": "^0.3.3",
-    "cors": "^2.8.5",
-    "discord.js": "^12.4.1",
-    "express": "^4.17.1",
-    "ffmpeg": "^0.0.4",
-    "ffmpeg-static": "^4.2.2",
-    "fs": "0.0.1-security",
-    "steamapi": "^2.1.2",
-    "xmlhttprequest": "^1.8.0",
-    "youtube-playlist": "^1.0.3",
-    "ytdl-core": "^3.4.2",
-    "ytdl-core-discord": "^1.2.4",
-    "ytpl": "^1.0.1"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "discord",
+    "bot",
+    "neue"
+  ],
   "author": "v1km4n",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/v1km4n/v1kbot.git"
-  },
-  "bugs": {
-    "url": "https://github.com/v1km4n/v1kbot/issues"
-  },
-  "homepage": "https://github.com/v1km4n/v1kbot#readme",
-  "description": "meh"
+  "dependencies": {
+    "@discordjs/opus": "^0.5.3",
+    "discord.js": "^12.5.3",
+    "ffmpeg-static": "^4.4.0",
+    "fs": "^0.0.1-security",
+    "net": "^1.0.2",
+    "steamapi": "^2.1.3",
+    "xmlhttprequest": "^1.8.0",
+    "ytdl-core": "^4.9.0",
+    "ytdl-core-discord": "^1.3.1",
+    "ytpl": "^2.2.1"
+  }
 }
