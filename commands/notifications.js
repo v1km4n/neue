@@ -13,7 +13,7 @@ module.exports = {
                 message.reply("ты удалён из списка поддерживаемых в курсе");
             }
         } else {
-            message.reply('эта команда работает только на https://discord.gg/7xptNH4');
+            message.reply('Эта команда работает только на https://discord.gg/7xptNH4');
         }
     },
 };
