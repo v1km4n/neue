@@ -15,16 +15,22 @@ module.exports = {
 			request.send();
 
 			let etf2lLink = "none";
+			let nickname;
 			let etf2lPlayer = JSON.parse(request.responseText);
 			if (etf2lPlayer.status.code == 200) 
 			{
+				nickname = etf2lPlayer.player.name;
 				etf2lLink = "https://etf2l.org/forum/user/" + etf2lPlayer.player.id;
 			}
 			steam.getUserSummary(steamID).then(summary => 
 			{ 
+				if (nickname == undefined)
+				{
+					nickname = summary.nickname;
+				}
 				var embedWithLeaguesLinks = new Discord.MessageEmbed()
 					.setColor('#0099ff')
-					.setTitle(`League Links for **${etf2lPlayer.player.name || summary.nickname}**`)
+					.setTitle(`League Links for **${nickname}**`)
 					.setThumbnail(summary.avatar.large)
 					.addFields(
 						{ name: '**ETF2L**', value: etf2lLink},
