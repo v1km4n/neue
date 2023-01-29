@@ -17,7 +17,7 @@ module.exports = {
             list += `\`\`\``;
             message.channel.send(list);
         } else {
-            mujikName = args[0][0].toUpperCase() + args[0].slice(1); //sASdfnkSDnk -> sasdfnksdnk -> Sasdfnksdnk
+            mujikName = args[0][0].toUpperCase() + args[0].slice(1).toLowerCase(); //sASdfnkSDnk -> sasdfnksdnk -> Sasdfnksdnk
             if (mujikName in dmblDates) {
                 if (dmblDates[mujikName] < Date.now()) {
                     message.channel.send(`${mujikName} уже отслужил, мужик`);
