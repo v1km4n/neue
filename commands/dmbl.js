@@ -10,7 +10,7 @@ module.exports = {
     description: '',
     execute(message, args) {
         if (args[0] === undefined) {
-            var list = `Список мужиков:\`n`;
+            var list = `Список мужиков:\`\n`;
             for (i in dmblDates) {
                 list += `${i}\n`;
             }
