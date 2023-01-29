@@ -1,6 +1,7 @@
 var dmblDates = {
     'Zush': Date.UTC(2021, 5, 5),
     'Fnzkie': Date.UTC(2021, 9, 27),
+    'DastRon': Date.UTC(2023, 5, 24),
 };
 // /\ MONTH - 1 !!!!!!
 
