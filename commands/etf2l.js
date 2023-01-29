@@ -73,7 +73,6 @@ module.exports = {
 				}
 								
 				var ETF2LEmbed = new Discord.MessageEmbed()
-
 					.setColor('#0099ff')
 					.setTitle(`ETF2L: ${etf2lPlayer.player.name} (${etf2lPlayer.player.country})`)
 					.setDescription(`https://etf2l.org/forum/user/${etf2lPlayer.player.id}`)
@@ -83,7 +82,9 @@ module.exports = {
 						{ name: '**Highlander**', value: HLEmbedDescription},
 					)
 				message.channel.send(ETF2LEmbed);
-			} else {
+			} 
+			else 
+			{
 				message.channel.send("This Steam account is not associated with a ETF2L profile");
 			}
 		});
