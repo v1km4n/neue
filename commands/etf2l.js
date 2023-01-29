@@ -85,7 +85,7 @@ module.exports = {
 			} 
 			else 
 			{
-				message.channel.send("This Steam account is not associated with a ETF2L profile");
+				message.channel.send("This Steam account is not associated with an ETF2L profile");
 			}
 		});
     },
