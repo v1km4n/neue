@@ -97,7 +97,11 @@ function gameModeParse (etf2lPlayer, teamN)
 {
 	let team = etf2lPlayer.player.teams[teamN];
 	let teamSeasons = etf2lPlayer.player.teams[teamN].competitions;
-	let teamSeasonsN = Object.keys(etf2lPlayer.player.teams[teamN].competitions).length;
+	let teamSeasonsN = 0;
+	if (teamSeasons != null) 
+	{
+		teamSeasonsN = Object.keys(etf2lPlayer.player.teams[teamN].competitions).length;
+	}
 	let latestSeason = null;
 
 	//unfortunately we cannot be sure that if a team has any seasons played then we have a season to parse, since what we wanna parse should not be playoffs or a preseason
