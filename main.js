@@ -37,7 +37,7 @@ client.on('message', async message => {
 	if (message.content.toLowerCase().includes("блины") || message.content.toLowerCase().includes("блинов") ||
 		message.content.toLowerCase().includes("блинам") || message.content.toLowerCase().includes("блинами") ||
 		message.content.toLowerCase().includes("блинах") || message.content.toLowerCase().includes("blini")) {
-		const catWithPancakes = new Discord.MessageAttachment("https://i.imgur.com/L4QqeEF.jpg");
+		const catWithPancakes = new Discord.MessageAttachment("https://i.imgur.com/L4QqeEF.jpeg");
 		message.channel.send(catWithPancakes)
 			.then(() => message.channel.send("KTO-TO SKAZAL BLINI?"));
 	} 
