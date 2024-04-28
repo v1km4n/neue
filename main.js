@@ -34,13 +34,15 @@ client.on('message', async message => {
 
 	if (message.author.bot) return;
 
-	if (message.content.toLowerCase().includes("блины") || message.content.toLowerCase().includes("блинов") ||
-		message.content.toLowerCase().includes("блинам") || message.content.toLowerCase().includes("блинами") ||
-		message.content.toLowerCase().includes("блинах") || message.content.toLowerCase().includes("blini")) {
-		const catWithPancakes = new Discord.MessageAttachment("https://i.imgur.com/L4QqeEF.jpeg");
-		message.channel.send(catWithPancakes)
-			.then(() => message.channel.send("KTO-TO SKAZAL BLINI?"));
-	} 
+	// if (message.content.toLowerCase().includes("блины") || message.content.toLowerCase().includes("блинов") ||
+	// 	message.content.toLowerCase().includes("блинам") || message.content.toLowerCase().includes("блинами") ||
+	// 	message.content.toLowerCase().includes("блинах") || message.content.toLowerCase().includes("blini")) {
+	// 	const catWithPancakes = new Discord.MessageAttachment("https://i.imgur.com/L4QqeEF.jpeg");
+	// 	message.channel.send(catWithPancakes)
+	// 		.then(() => message.channel.send("KTO-TO SKAZAL BLINI?"));
+	// }
+	// prolly some part of messageattachment api got deprecated
+	// the only fix is to update to a discordjs version
 
 	const withoutPrefix = message.content.slice(config.prefix.length); //"!blahblahblah" -> "blahblahblah"
 	const split = withoutPrefix.split(/ +/); //"blah blah blah" -> ['blah', 'blah', 'blah']
