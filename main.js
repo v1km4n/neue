@@ -12,7 +12,7 @@ const fs = require('node:fs');
 // 	// prolly some part of messageattachment api got deprecated
 // 	// the only fix is to update to a discordjs version
 
-const { ActivityType, Client, Collection, Events, GatewayIntentBits  } = require('discord.js');
+const { ActivityType, AttachmentBuilder, Client, Collection, Events, GatewayIntentBits  } = require('discord.js');
 const client = new Client({ intents: [
 	GatewayIntentBits.Guilds,
 	GatewayIntentBits.GuildMessages,
@@ -32,6 +32,17 @@ for (const commandFile of commandFiles) {
 		client.commands.set(command.data.name, command);
 	}
 }
+
+client.on(Events.MessageCreate, async message => {
+	if (message.author.bot) return;
+	if (message.content.toLowerCase().includes("блины") || message.content.toLowerCase().includes("блинов") ||
+		message.content.toLowerCase().includes("блинам") || message.content.toLowerCase().includes("блинами") ||
+		message.content.toLowerCase().includes("блинах") || message.content.toLowerCase().includes("blini")) {
+		const catWithPancakes = (new AttachmentBuilder('https://i.imgur.com/L4QqeEF.jpeg')).attachment;
+		message.channel.send({files: [catWithPancakes]})
+			.then(() => message.channel.send("KTO-TO SKAZAL BLINI?"));
+	}
+});
 
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
