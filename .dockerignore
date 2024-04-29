@@ -1,0 +1,5 @@
+src/node_modules
+
+Dockerfile
+.dockerignore
+src/package-lock.json
