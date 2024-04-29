@@ -6,8 +6,6 @@ on:
 
 jobs:
   push-docker-image:
-    env:
-      docker_repo: simploka/neue
     runs-on: ubuntu-latest
     steps:
       - name: check repository
@@ -24,5 +22,5 @@ jobs:
         with:
           push: true
           tags: |
-            ${{ docker_repo }}:${{ github.event.release.tag_name }}
-            ${{ docker_repo }}:latest
+            simploka/neue:${{ github.event.release.tag_name }}
+            simploka/neue:latest
