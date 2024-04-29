@@ -1,6 +1,5 @@
-### neue
-My crappy **HEAVILY** outdated discord bot that runs on prehistoric version of discord.js (v12).
-It mostly contains personal related commands and stuff, the only thing that *I guess* can be useful for others is [ETF2L](https://etf2l.org/)/[UGC](https://www.ugcleague.com/)/[RGL](https://rgl.gg/) parser. 
+## neue
+My crappy discord bot that mostly contains personal related commands and stuff, the only thing that *I guess* can be useful for others is [ETF2L](https://etf2l.org/)/[UGC](https://www.ugcleague.com/)/[RGL](https://rgl.gg/) parser. 
 
 ### Installation
 Friendly reminder to myself in case I need to re-setup this on another VPS:
@@ -12,6 +11,5 @@ Friendly reminder to myself in case I need to re-setup this on another VPS:
 
 ### TODO
 
-- Rewrite this using the latest Discord.js version *(kinda unlikely)*
-- Add YouTube music stuff back *(veeeeeeeery unlikely)*
-- Maybe use a real programming language (C#) next time???
+- Make use of GitHub Actions for Docker image tagging & publishing as well as deployment of the bot itself
+- Use a separate vars file and Docker volumes instead of env vars for token storage
