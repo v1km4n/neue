@@ -1,18 +1,8 @@
 const process = require('process');
 const discordIDs = require("./config.json");
 const fs = require('node:fs');
-
-// 	// if (message.content.toLowerCase().includes("блины") || message.content.toLowerCase().includes("блинов") ||
-// 	// 	message.content.toLowerCase().includes("блинам") || message.content.toLowerCase().includes("блинами") ||
-// 	// 	message.content.toLowerCase().includes("блинах") || message.content.toLowerCase().includes("blini")) {
-// 	// 	const catWithPancakes = new Discord.MessageAttachment("https://i.imgur.com/L4QqeEF.jpeg");
-// 	// 	message.channel.send(catWithPancakes)
-// 	// 		.then(() => message.channel.send("KTO-TO SKAZAL BLINI?"));
-// 	// }
-// 	// prolly some part of messageattachment api got deprecated
-// 	// the only fix is to update to a discordjs version
-
 const { ActivityType, AttachmentBuilder, Client, Collection, Events, GatewayIntentBits  } = require('discord.js');
+
 const client = new Client({ intents: [
 	GatewayIntentBits.Guilds,
 	GatewayIntentBits.GuildMessages,
@@ -20,7 +10,6 @@ const client = new Client({ intents: [
 	GatewayIntentBits.DirectMessages,
 	GatewayIntentBits.MessageContent]
 });
-const token = process.env.token;
 
 client.commands = new Collection();
 const commandsDir = './commands'
@@ -63,11 +52,11 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 client.once(Events.ClientReady, () => {
-	client.user.setStatus('online');
 	client.user.setActivity('Team Fortress 2', {
 		type: ActivityType.Streaming,
 		url: 'https://www.twitch.tv/v1km4n'
 	});
 });
 
+const token = process.env.token;
 client.login(token);

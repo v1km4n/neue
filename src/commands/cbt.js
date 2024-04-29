@@ -1,9 +1,8 @@
 const { AttachmentBuilder, SlashCommandBuilder } = require('discord.js');
 const pics = [
-	"https://cdn.discordapp.com/attachments/613703369009135632/636620272451190794/P5txqHSTr1A.jpg",
-	"https://cdn.discordapp.com/attachments/613703369009135632/636618259759628288/oSdOPRKypSc.jpg"
+	"https://i.imgur.com/wZvtbWd.jpeg",
+	"https://i.imgur.com/8OhzCBd.jpeg"
 ];
-// TODO: use imgur to host images
 const audio = 'https://upload.wikimedia.org/wikipedia/commons/4/41/CocknBallTorture.ogg';
 
 module.exports = {
