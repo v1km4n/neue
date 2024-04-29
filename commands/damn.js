@@ -1,9 +1,12 @@
-const Discord = require("discord.js");
+const { AttachmentBuilder, SlashCommandBuilder } = require('discord.js');
+const pic = 'https://i.imgur.com/AXzt5XY.png';
 
 module.exports = {
-    name: 'damn',
-    description: '',
-    execute(message, args) {
-		message.channel.send(new Discord.MessageAttachment('https://cdn.discordapp.com/attachments/347767925241020426/677908852233994250/0_Ji8-YET7M.png'));
-    },
+    data: new SlashCommandBuilder()
+        .setName('damn')
+        .setDescription('Damn that\'s crazy'),
+    async execute(interaction){
+        const picAttachment = (new AttachmentBuilder(pic)).attachment;
+        interaction.reply({files: [picAttachment]});
+    }
 };

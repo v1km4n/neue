@@ -1,15 +1,15 @@
 {
-  "name": "neue_v12",
+  "name": "neue",
   "version": "0.0.1",
   "description": "Discord Bot",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "v1km4n",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.3",
+    "discord.js": "^14.14.1",
     "fs": "^0.0.1-security",
     "net": "^1.0.2",
     "process": "^0.11.10",

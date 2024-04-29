@@ -1,11 +1,11 @@
+const { SlashCommandBuilder } = require("discord.js");
 const process = require('process');
 
-module.exports = 
-{
-	name: 'uptime',
-    description: 'Bot uptime',
-    execute(message, args) 
-    {
-		message.channel.send(`I've been running for ${ Math.floor( process.uptime() ) } second(s) on ${ process.platform }`);
-    },
-}
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('uptime')
+        .setDescription('Bot uptime'),
+    async execute(interaction){
+        interaction.reply(`I've been running for ${ Math.floor( process.uptime() ) } second(s) on ${ process.platform }`);
+    }
+};
