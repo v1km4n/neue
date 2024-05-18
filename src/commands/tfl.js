@@ -13,6 +13,7 @@ module.exports = {
                 .setDescription('Steam profile link')
 				.setRequired(true)),
 	async execute(interaction) {
+		await interaction.deferReply();
 		const link = interaction.options.getString('link');
 		try {
 			const steamId = await steam.resolve(link);
@@ -42,12 +43,12 @@ module.exports = {
 						{ name: '**UGC**', value: `https://www.ugcleague.com/players_page.cfm?player_id=${steamId}`},
 						{ name: '**RGL**', value: `https://rgl.gg/Public/PlayerProfile.aspx?p=${steamId}`}
 					);
-				interaction.reply({embeds: [leaguesEmbed]});
+				await interaction.editReply({embeds: [leaguesEmbed]});
 			}
 		} catch (e) {
-			if (e.toString().includes('No match')) interaction.reply('> **Error:** No such Steam profile');
-			else if (e.toString().includes('Invalid format')) interaction.reply('> **Error:** Invalid Steam profile link');
-			else interaction.reply(`> **Unknown Error:** ${e.toString()}`);
+			if (e.toString().includes('No match')) await interaction.editReply('> **Error:** No such Steam profile');
+			else if (e.toString().includes('Invalid format')) await interaction.editReply('> **Error:** Invalid Steam profile link');
+			else await interaction.editReply(`> **Unknown Error:** ${e.toString()}`);
 		}
 	}
 };

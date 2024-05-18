@@ -5,6 +5,7 @@ module.exports = {
 		.setName('catgirl')
 		.setDescription('Harsh trush about catgirls'),
 	async execute(interaction) {
+		await interaction.deferReply();
         let answer = [
 			'Кошкодевочек ещё не изобрели ;_;',
 			'В этом мире всё ещё нет смысла жить - кошкодевочек не существует',
@@ -15,6 +16,6 @@ module.exports = {
 			'У тебя не найдётся сотки на верёвку и мыло? Кошкодевочек ещё не изобрели',
 			'Некопара поселила в тебя ложную надежду, которая никогда не оправдается. Живи с этим.',
 		];
-		interaction.reply(answer[Math.floor(Math.random() * answer.length)]);
+		await interaction.editReply(answer[Math.floor(Math.random() * answer.length)]);
     }
 };
