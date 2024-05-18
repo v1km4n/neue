@@ -12,6 +12,7 @@ module.exports = {
                 .setDescription('Steam profile link')
 				.setRequired(true)),
 	async execute(interaction) {
+		await interaction.deferReply();
 		const link = interaction.options.getString('link');
 		try {
 			const steamId = await steam.resolve(link);
@@ -19,10 +20,10 @@ module.exports = {
 			request.open('GET', new URL(`https://api.etf2l.org/player/${steamId}.json`));
 			request.send();
 
-			request.onload = () => {
+			request.onload = async () => {
 				const etf2lPlayer = JSON.parse(request.responseText);
 				if (etf2lPlayer.status.code !== 200) {
-					interaction.reply(`> **Error:** No such player on ETF2L`);
+					await interaction.editReply(`> **Error:** No such player on ETF2L`);
 				} else {
 					let HLTeamNo;
 					let sixesTeamNo;
@@ -68,13 +69,13 @@ module.exports = {
 							{ name: '**6v6**', value: sixesEmbedDescription },
 							{ name: '**Highlander**', value: HLEmbedDescription }
 						);
-					interaction.reply({embeds: [ETF2LEmbed]});
+					await interaction.editReply({embeds: [ETF2LEmbed]});
 				}
 			}
 		} catch (e) {
-			if (e.toString().includes('No match')) interaction.reply('> **Error:** No such Steam profile');
-			else if (e.toString().includes('Invalid format')) interaction.reply('> **Error:** Invalid Steam profile link');
-			else interaction.reply(`> **Unknown Error:** ${e.toString()}`);
+			if (e.toString().includes('No match')) await interaction.editReply('> **Error:** No such Steam profile');
+			else if (e.toString().includes('Invalid format')) await interaction.editReply('> **Error:** Invalid Steam profile link');
+			else await interaction.editReply(`> **Unknown Error:** ${e.toString()}`);
 		}
     },
 };

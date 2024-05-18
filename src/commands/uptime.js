@@ -6,6 +6,7 @@ module.exports = {
         .setName('uptime')
         .setDescription('Bot uptime'),
     async execute(interaction){
-        interaction.reply(`I've been running for ${ Math.floor( process.uptime() ) } second(s) on ${ process.platform }`);
+        await interaction.deferReply();
+        interaction.editReply(`I've been running for ${ Math.floor( process.uptime() ) } second(s) on ${ process.platform }`);
     }
 };

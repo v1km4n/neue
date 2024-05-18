@@ -6,7 +6,8 @@ module.exports = {
         .setName('wise')
         .setDescription('MyDpblu` reHuu`'),
     async execute(interaction) {
+        await interaction.deferReply();
         const picAttachment = (new AttachmentBuilder(pic)).attachment;
-        interaction.reply({files: [picAttachment]});
+        interaction.editReply({files: [picAttachment]});
     }
 };

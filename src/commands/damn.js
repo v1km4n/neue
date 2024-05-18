@@ -6,7 +6,8 @@ module.exports = {
         .setName('damn')
         .setDescription('Damn that\'s crazy'),
     async execute(interaction){
+        await interaction.deferReply();
         const picAttachment = (new AttachmentBuilder(pic)).attachment;
-        interaction.reply({files: [picAttachment]});
+        await interaction.editReply({files: [picAttachment]});
     }
 };

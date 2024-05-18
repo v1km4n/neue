@@ -14,15 +14,16 @@ module.exports = {
             option.setName('nickname')
                 .setDescription('ETF2L player nickname')),
     async execute(interaction) {
+        await interaction.deferReply();
         if (!interaction.options.getString('nickname')) {
             let list = 'Список мужиков:\n';
             for (const date in dates) list += `- ${date}\n`;
-            interaction.reply(list);
+            await interaction.editReply(list);
         } else {
             const player = interaction.options.getString('nickname');
             if (player in dates) {
                 if (dates[player] < Date.now()) {
-                    interaction.reply(`${player} уже отслужил`);
+                    await interaction.editReply(`${player} уже отслужил`);
                 } else {
                     let time = dates[player] - Date.now();
                     let milliseconds = time % 1000; //seconds
@@ -34,10 +35,10 @@ module.exports = {
                     let hours = time % 24; //days
                     time = (time - hours) / 24; //hours -> days
                     let percentage = (100 - ((time / 365) * 100)).toFixed(2);
-                    interaction.reply(`${player} вернётся через ${time} дней [${percentage}%]`);
+                    await interaction.editReply(`${player} вернётся через ${time} дней [${percentage}%]`);
                 }
             } else {
-                interaction.reply('Такого мужика нет');
+                await interaction.editReply('Такого мужика нет');
             }
         }
     }
