@@ -1,5 +1,4 @@
-const process = require('process');
-const discordIDs = require("./config.json");
+require('dotenv').config();
 const fs = require('node:fs');
 const { ActivityType, AttachmentBuilder, Client, Collection, Events, GatewayIntentBits  } = require('discord.js');
 
