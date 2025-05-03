@@ -1,7 +1,7 @@
 const { REST, Routes } = require('discord.js');
 const { clientId } = require('./config.json');
 const fs = require('node:fs');
-const process = require("process");
+require('dotenv').config();
 
 const commands = [];
 
@@ -15,7 +15,8 @@ for (const commandFile of commandFiles) {
 	}
 }
 
-const rest = new REST().setToken(process.env.token);
+
+const rest = new REST().setToken(process.env.DISCORDTOKEN);
 (async () => {
 	try {
 		const data = await rest.put(

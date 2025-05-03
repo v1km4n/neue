@@ -4,12 +4,19 @@ My crappy discord bot that mostly contains personal related commands and stuff, 
 ### Installation
 Friendly reminder to myself in case I need to re-setup this on another VPS:
 
-- Take Discord token from [here](https://discord.com/developers/applications/418819481461063680/bot)
-- Take Steam token from [here](https://steamcommunity.com/dev/apikey)
+- Get Discord token from [here](https://discord.com/developers/applications/418819481461063680/bot)
+- Get Steam token from [here](https://steamcommunity.com/dev/apikey)
+- Get serveme.tf token from [here](https://serveme.tf/settings)
+- Create an .env file with the following:
+```.env
+DISCORDTOKEN=<Discord Bot Token>
+STEAMTOKEN=<Steam App Token>
+SERVEMEAPIKEY=<serveme.tf API Key>
+```
 - Install [Docker](https://docs.docker.com/engine/install)
-- docker run -d -e DISCORDTOKEN="`le discord token`" -e STEAMTOKEN="`le steam token`" --name neue simploka/neue:latest
+- `docker run -d --env-file=$(pwd)/.env --name neue simploka/neue:latest`
 
 ### TODO
 
+- Replace XMLHttpRequest package with Axios so that a single package is used for HTTP requests;
 - Make use of GitHub Actions for Docker image tagging & publishing as well as deployment of the bot itself
-- Use a separate vars file and Docker volumes instead of env vars for token storage
