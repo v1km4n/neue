@@ -18,5 +18,4 @@ SERVEMEAPIKEY=<serveme.tf API Key>
 
 ### TODO
 
-- Replace XMLHttpRequest package with Axios so that a single package is used for HTTP requests;
-- Make use of GitHub Actions for Docker image tagging & publishing as well as deployment of the bot itself
+- Replace XMLHttpRequest package with Axios so that a single package is used for HTTP requests
