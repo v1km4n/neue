@@ -51,19 +51,25 @@ module.exports = {
             });
 
             const collectorFilter = i => i.user.id === interaction.user.id;
-        	const confirmation = await deferred.resource.message.awaitMessageComponent({
-                filter: collectorFilter,
-                time: 7_200_000 // 2hrs
-            });
 
-            if (confirmation.customId === 'end') {
-                const reservationEndStatus = await endReservation(reservation.request.data.reservation.id);
-                if (reservationEndStatus) {
-                    confirmation.update({ content: `> **Info:** Reservation ended`, components: [new ActionRowBuilder().addComponents(openReservationButton)] });
-                } else {
-                    confirmation.update({ content: `> **Error:** Reservation has already ended`, components: [new ActionRowBuilder().addComponents(openReservationButton)] });
-                }
-        	}
+            try {
+                const confirmation = await deferred.resource.message.awaitMessageComponent({
+                    filter: collectorFilter,
+                    time: 18_000_000 // 5hrs
+                });
+
+                if (confirmation.customId === 'end') {
+                    const reservationEndStatus = await endReservation(reservation.request.data.reservation.id);
+                    if (reservationEndStatus) {
+                        confirmation.update({ content: `> **Info:** Reservation ended`, components: [new ActionRowBuilder().addComponents(openReservationButton)] });
+                    } else {
+                        confirmation.update({ content: `> **Error:** Reservation has already ended`, components: [new ActionRowBuilder().addComponents(openReservationButton)] });
+                    }
+            	}
+            } catch {
+                await interaction.editReply(`> **Info:** You will now have to end the reservation manually`);
+            }
+
         } else if (reservation.request.status === 400) {
             await interaction.editReply(`> **Error:** Can't make another reservation`);
         } else {
@@ -117,9 +123,9 @@ async function makeReservation() {
             starts_at: reservation.starts_at,
             ends_at: reservation.ends_at,
             server_id: serverId,
-            password: passGen(16),
-            rcon: passGen(20),
-            first_map: null,
+            password: generatePass(16),
+            rcon: generatePass(20),
+            first_map: "cp_process_f12",
             tv_password: "tv",
             tv_relaypassword: "tv",
             server_config_id: null,
@@ -169,7 +175,7 @@ async function endReservation(reservationID) {
     }
 }
 
-function passGen(length) {
+function generatePass(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
     for (let i = 0; i < length; i++) result += characters.charAt(Math.floor(Math.random() * characters.length));
